@@ -16,16 +16,25 @@ namespace lab2
         private string _replace(string text, string w, Color c)
         {
             var rep = marks.FindAll(e => e.MarkColor == c);
-            return rep.Count > 0 ? text.Replace(w,rep[r.Next(m[c] - 1)].Name) 
+            return rep.Count > 0 ? text.Replace(w, rep[r.Next(m[c] - 1)].Name)
                 : text;
         }
 
+        //bool isChecked = false;
+
         public string Text
         {
-            get => _replace(_replace(_replace(_replace(text, "<t>", Color.BLUE),
-                "<h>", Color.WHITE), 
+            get
+            {
+                var res = _replace(_replace(_replace(_replace(_replace(_replace(text, "<m>", Color.YELLOW), 
+                "<v>", Color.BLACK), 
+                "<t>", Color.BLUE),
+                "<h>", Color.WHITE),
                 "<p>", Color.RED),
                 "<b>", Color.GREEN);
+                //isChecked = true;
+                return res;
+            }
             
             set => text = value; 
         }
